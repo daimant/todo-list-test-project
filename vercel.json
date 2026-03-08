@@ -1,4 +1,6 @@
 {
+  "outputDirectory": ".output/public",
+  "buildCommand": "yarn build",
   "builds": [
     {
       "src": "package.json",
@@ -10,4 +12,3 @@
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
-
