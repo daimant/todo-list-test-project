@@ -129,7 +129,7 @@ onUnmounted(() => {
       <div class="page__actions">
         <button
           type="button"
-          class="btn btn--ghost btn--icon"
+          class="btn btn--ghost"
           :disabled="!canUndo"
           title="Отменить (Ctrl+Z)"
           @click="undo"
@@ -138,14 +138,14 @@ onUnmounted(() => {
         </button>
         <button
           type="button"
-          class="btn btn--ghost btn--icon"
+          class="btn btn--ghost"
           :disabled="!canRedo"
           title="Повторить (Ctrl+Shift+Z)"
           @click="redo"
         >
           Повторить
         </button>
-        <button type="button" class="btn btn--ghost" @click="openCancelModal">Отменить</button>
+        <button type="button" class="btn btn--ghost" @click="openCancelModal">Назад</button>
         <button type="button" class="btn btn--danger" @click="openDeleteModal">Удалить</button>
         <button type="button" class="btn btn--primary" @click="save">Сохранить</button>
       </div>
@@ -181,14 +181,10 @@ onUnmounted(() => {
               @input="debouncedPush"
             />
 
-            <div class="todo-row__actions">
-              <button type="button" class="btn btn--ghost btn--icon" title="Удалить" @click="removeTodo(index)">
-                ✕
-              </button>
-            </div>
+            <button type="button" class="btn btn--icon" title="Удалить" @click="removeTodo(index)">✕</button>
           </div>
         </div>
-        <button type="button" class="btn btn--ghost btn--icon" style="margin-top: 0.5rem" @click="addTodo">
+        <button type="button" class="btn btn--ghost" style="margin-top: 0.5rem" @click="addTodo">
           + Добавить задачу
         </button>
       </div>
@@ -271,24 +267,27 @@ onUnmounted(() => {
     border-radius: 0.4rem;
     border: 1px solid rgba(148, 163, 184, 0.9);
     background: rgba(2, 6, 23, 0.9);
-  }
+    cursor: pointer;
 
-  &__checkbox input {
-    appearance: none;
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-    background: transparent;
-  }
+    input {
+      appearance: none;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: transparent;
+      cursor: inherit;
+      margin: 0;
 
-  &__checkbox input:checked {
-    background: radial-gradient(circle at top left, #38bdf8, #0ea5e9);
-    border-color: transparent;
-  }
+      &:checked {
+        background: radial-gradient(circle at top left, #38bdf8, #0ea5e9);
+        border-color: transparent;
+      }
 
-  &__checkbox input:focus-visible {
-    outline: 2px solid rgba(56, 189, 248, 0.9);
-    outline-offset: 2px;
+      &:focus-visible {
+        outline: 2px solid rgba(56, 189, 248, 0.9);
+        outline-offset: 2px;
+      }
+    }
   }
 
   &__input {
@@ -297,21 +296,15 @@ onUnmounted(() => {
     color: $text-main;
     font-size: 0.9rem;
     outline: none;
-  }
 
-  &__input::placeholder {
-    color: rgba(148, 163, 184, 0.7);
-  }
+    &::placeholder {
+      color: rgba(148, 163, 184, 0.7);
+    }
 
-  &__input--done {
-    color: $text-muted;
-    text-decoration: line-through;
-  }
-
-  &__actions {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
+    &--done {
+      color: $text-muted;
+      text-decoration: line-through;
+    }
   }
 }
 

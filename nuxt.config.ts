@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   ssr: false,
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@pinia/nuxt'],
+  modules: ['@pinia/nuxt','@nuxtjs/google-fonts'],
   css: ['~/assets/styles/main.scss'],
   nitro: {
     preset: 'node-server'

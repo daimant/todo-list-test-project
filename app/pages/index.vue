@@ -82,8 +82,8 @@ function confirmDelete() {
           <span class="pill pill--success">{{ doneCount(note.todos) }} выполнено</span>
 
           <div class="note-card__footer-actions">
-            <NuxtLink :to="`/note/${note.id}`" class="btn btn--ghost btn--icon">Изменить</NuxtLink>
-            <button type="button" class="btn btn--danger btn--icon" @click="openDeleteModal(note)">
+            <NuxtLink :to="`/note/${note.id}`" class="btn btn--ghost">Изменить</NuxtLink>
+            <button type="button" class="btn btn--danger" @click="openDeleteModal(note)">
               Удалить
             </button>
           </div>

@@ -1,9 +1,9 @@
 @use "sass:color";
-@import "variables.scss";
 
 *,
 *::before,
 *::after {
+  font-family: Roboto, sans-serif;
   box-sizing: border-box;
 }
 
@@ -15,10 +15,6 @@ body {
   margin: 0;
   background: $bg-surface;
   color: $text-main;
-}
-
-button {
-  font-family: inherit;
 }
 
 .card {
@@ -53,37 +49,24 @@ button {
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.15s ease,
-  border-color 0.15s ease,
-  transform 0.08s ease,
-  box-shadow 0.15s ease;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.9),
-  0 0 0 1px rgba(15, 23, 42, 1);
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.08s ease, box-shadow 0.15s ease;
 
   &:hover {
     background: color.mix($accent-soft, #020617, 60%);
     border-color: rgba(56, 189, 248, 0.6);
-    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.9),
-    0 0 0 1px rgba(15, 23, 42, 1);
   }
 
   &:active {
     transform: translateY(1px);
-    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.9),
-    0 0 0 1px rgba(15, 23, 42, 1);
   }
 
   &--primary {
     background: radial-gradient(circle at top left, #38bdf8, #0ea5e9);
     color: #0b1120;
-    box-shadow: 0 18px 38px rgba(8, 47, 73, 0.9),
-    0 0 0 1px rgba(15, 23, 42, 1);
-  }
 
-  &--primary:hover {
-    background: radial-gradient(circle at top left, #7dd3fc, #38bdf8);
-    box-shadow: 0 22px 45px rgba(8, 47, 73, 0.95),
-    0 0 0 1px rgba(15, 23, 42, 1);
+    &:hover {
+      background: radial-gradient(circle at top left, #7dd3fc, #38bdf8);
+    }
   }
 
   &--ghost {
@@ -95,14 +78,15 @@ button {
     background: rgba(15, 23, 42, 0.7);
     border-color: rgba(248, 113, 113, 0.6);
     color: #fecaca;
-  }
 
-  &--danger:hover {
-    background: color.mix($danger-soft, #450a0a, 70%);
+    &:hover {
+      background: color.mix($danger-soft, #450a0a, 70%);
+    }
   }
 
   &--icon {
-    padding-inline: 0.6rem;
+    border: none;
+    background: none;
   }
 
   &[disabled] {
