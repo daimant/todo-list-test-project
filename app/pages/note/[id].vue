@@ -6,15 +6,15 @@ type Draft = { title: string; todos: TodoItem[] }
 const route = useRoute()
 const router = useRouter()
 const { byId, deleteNote, upsertNote } = useNotesStore()
-const initialDraft = computed((): Draft => existing.value ? noteToDraft(existing.value) : emptyDraft())
-const history = useHistory(initialDraft.value)
-const { canUndo, canRedo, push, undo, redo, replaceInitial } = history
 const id = computed(() => {
   const p = route.params.id
   return (Array.isArray(p) ? p[0] : p) ?? ''
 })
 const isNew = computed(() => id.value === 'new')
 const existing = computed(() => (isNew.value ? null : byId(id.value)))
+const initialDraft = computed((): Draft => existing.value ? noteToDraft(existing.value) : emptyDraft())
+const history = useHistory(initialDraft.value)
+const { canUndo, canRedo, push, undo, redo, replaceInitial } = history
 const cloneDraft = (value: Draft): Draft => JSON.parse(JSON.stringify(value))
 const draft = ref<Draft>(cloneDraft(history.state.value.present))
 const showCancelModal = ref(false)
