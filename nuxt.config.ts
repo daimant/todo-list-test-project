@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   modules: ['@pinia/nuxt','@nuxtjs/google-fonts'],
   css: ['~/assets/styles/main.scss'],
   nitro: {
-    preset: 'node-server'
+    preset: 'vercel'
   },
   typescript: {
     typeCheck: true,
