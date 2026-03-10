@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Note, TodoItem } from '../types'
+import { useNotesStore } from '../stores/notes';
 
 const notesStore = useNotesStore()
 const notes = computed(() => notesStore.notes)

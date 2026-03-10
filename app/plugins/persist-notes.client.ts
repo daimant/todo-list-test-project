@@ -1,4 +1,4 @@
-import { useNotesStore } from '~/stores/notes'
+import { useNotesStore } from '../stores/notes'
 import { storeToRefs } from "pinia";
 
 export default defineNuxtPlugin(() => {

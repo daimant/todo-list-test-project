@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { Note, TodoItem } from '../../types'
+import { useNotesStore } from '../../stores/notes'
+import { useHistory } from '../../composables/useHistory'
 
 type Draft = { title: string; todos: TodoItem[] }
 
