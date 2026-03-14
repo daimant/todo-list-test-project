@@ -11,10 +11,7 @@ export const useNotesStore = defineStore('notes', () => {
   const byId = (id: string) => notes.value.find((n) => n.id === id)
 
   function loadFromStorage() {
-    if (typeof window === 'undefined') {
-      return
-    }
-    const raw = window.localStorage.getItem(STORAGE_KEY)
+    const raw = localStorage.getItem(STORAGE_KEY)
     if (!raw) {
       return
     }
@@ -27,18 +24,12 @@ export const useNotesStore = defineStore('notes', () => {
         }))
       }
     } catch {
-      window.localStorage.removeItem(STORAGE_KEY)
+      localStorage.removeItem(STORAGE_KEY)
     }
   }
 
   function persist() {
-    if (typeof window === 'undefined') {
-      return
-    }
-    const payload: NotesState = {
-      notes: notes.value
-    }
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(payload))
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ notes: notes.value }))
   }
 
   function upsertNote(payload: { id?: string; title: string; todos: TodoItem[] }) {

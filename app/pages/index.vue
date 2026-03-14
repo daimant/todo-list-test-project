@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Note, TodoItem } from '../types'
 import { useNotesStore } from '../stores/notes';
+import { watchEffect } from "vue";
 
 const notesStore = useNotesStore()
 const notes = computed(() => notesStore.notes)
@@ -53,44 +54,46 @@ function confirmDelete() {
       </div>
     </div>
 
-    <div v-if="!notes.length" class="card card--muted">
-      <p class="page__subtitle">Нет заметок. Создайте первую.</p>
+    <client-only>
+      <div v-if="!notes.length" class="card card--muted">
+        <p class="page__subtitle">Нет заметок. Создайте первую.</p>
 
-      <NuxtLink to="/note/new" class="btn btn--primary" style="margin-top: 0.75rem">
-        Создать заметку
-      </NuxtLink>
-    </div>
+        <NuxtLink to="/note/new" class="btn btn--primary" style="margin-top: 0.75rem">
+          Создать заметку
+        </NuxtLink>
+      </div>
 
-    <div v-else class="note-grid">
-      <article v-for="note in notes" :key="note.id" class="card">
-        <div>
-          <h3 class="note-card__title">{{ note.title }}</h3>
+      <div v-else class="note-grid">
+        <article v-for="note in notes" :key="note.id" class="card">
+          <div>
+            <h3 class="note-card__title">{{ note.title }}</h3>
 
-          <div class="note-card__meta">
-            <span class="badge badge--accent">{{ note.todos.length }} задач</span>
-            <span class="pill">{{ formatDate(note.updatedAt) }}</span>
-          </div>
+            <div class="note-card__meta">
+              <span class="badge badge--accent">{{ note.todos.length }} задач</span>
+              <span class="pill">{{ formatDate(note.updatedAt) }}</span>
+            </div>
 
-          <div class="note-card__preview">
-            <div v-for="(todo, i) in previewTodos(note.todos)" :key="todo.id" class="note-card__preview-item">
-              <span class="note-card__preview-dot"/>
-              <span :class="{ 'todo-row__input--done': todo.done }">{{ todo.text || 'Без текста' }}</span>
+            <div class="note-card__preview">
+              <div v-for="(todo, i) in previewTodos(note.todos)" :key="todo.id" class="note-card__preview-item">
+                <span class="note-card__preview-dot"/>
+                <span :class="{ 'todo-row__input--done': todo.done }">{{ todo.text || 'Без текста' }}</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="note-card__footer">
-          <span class="pill pill--success">{{ doneCount(note.todos) }} выполнено</span>
+          <div class="note-card__footer">
+            <span class="pill pill--success">{{ doneCount(note.todos) }} выполнено</span>
 
-          <div class="note-card__footer-actions">
-            <NuxtLink :to="`/note/${note.id}`" class="btn btn--ghost">Изменить</NuxtLink>
-            <button type="button" class="btn btn--danger" @click="openDeleteModal(note)">
-              Удалить
-            </button>
+            <div class="note-card__footer-actions">
+              <NuxtLink :to="`/note/${note.id}`" class="btn btn--ghost">Изменить</NuxtLink>
+              <button type="button" class="btn btn--danger" @click="openDeleteModal(note)">
+                Удалить
+              </button>
+            </div>
           </div>
-        </div>
-      </article>
-    </div>
+        </article>
+      </div>
+    </client-only>
 
     <AppModal v-model="showDeleteModal" title="Удалить заметку?" text="Эту заметку нельзя будет восстановить.">
       <template #actions>

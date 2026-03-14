@@ -42,7 +42,7 @@ const emit = defineEmits<{ 'update:modelValue': [value: boolean] }>()
   width: 100%;
   max-width: 420px;
   border-radius: 1.25rem;
-  background: radial-gradient(circle at top left, #1f2937, #020617);
+  background: #1f2937;
   border: 1px solid $border-subtle;
   padding: 1.25rem 1.35rem 1.1rem;
   box-shadow: 0 24px 60px rgba(15, 23, 42, 0.95),
